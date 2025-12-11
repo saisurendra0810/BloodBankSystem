@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Inventory System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f2f2f2;
+        }
+        header {
+            background-color: #c62828;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #c62828;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        table, th, td {
+            border: 1px solid #bbb;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #e53935;
+            color: white;
+        }
+        .form-box {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #999;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+        button {
+            width: 100%;
+            background: #c62828;
+            padding: 10px;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #b71c1c;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Blood Bank Inventory System</h1>
+</header>
+
+<div class="container">
+
+    <h2>Available Blood Units</h2>
+    <table id="inventoryTable">
+        <tr>
+            <th>Blood Group</th>
+            <th>Units Available</th>
+            <th>Expiry Date</th>
+        </tr>
+        <tr>
+            <td>A+</td>
+            <td>10</td>
+            <td>2025-02-15</td>
+        </tr>
+        <tr>
+            <td>B+</td>
+            <td>8</td>
+            <td>2025-01-20</td>
+        </tr>
+    </table>
+
+    <div class="form-box">
+        <h2>Add New Blood Unit</h2>
+
+        <label>Blood Group:</label>
+        <select id="bloodGroup">
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+        </select>
+
+        <label>Units:</label>
+        <input type="number" id="units" placeholder="Enter units">
+
+        <label>Expiry Date:</label>
+        <input type="date" id="expiry">
+
+        <button onclick="addBlood()">Add to Inventory</button>
+    </div>
+</div>
+
+<script>
+    function addBlood() {
+        let table = document.getElementById("inventoryTable");
+        let row = table.insertRow();
+
+        let group = document.getElementById("bloodGroup").value;
+        let units = document.getElementById("units").value;
+        let expiry = document.getElementById("expiry").value;
+
+        if (units === "" || expiry === "") {
+            alert("Please fill all fields.");
+            return;
+        }
+
+        row.insertCell(0).innerHTML = group;
+        row.insertCell(1).innerHTML = units;
+        row.insertCell(2).innerHTML = expiry;
+
+        alert("Blood unit added successfully!");
+    }
+</script>
+
+</body>
+</html>
